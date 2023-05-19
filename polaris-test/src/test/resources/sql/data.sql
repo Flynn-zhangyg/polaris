@@ -1,0 +1,1 @@
+replace into testdb.user(id, name) values (1, "abc");
