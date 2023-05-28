@@ -9,6 +9,8 @@
 
     <modules>
         <module>polaris-test</module>
+        <module>polaris-spring-web</module>
+        <module>polaris-common</module>
     </modules>
 
     <parent>
@@ -38,6 +40,16 @@
             <dependency>
                 <groupId>io.github.flynn-zhangyg</groupId>
                 <artifactId>polaris-test</artifactId>
+                <version>${polaris.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.github.flynn-zhangyg</groupId>
+                <artifactId>polaris-common</artifactId>
+                <version>${polaris.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.github.flynn-zhangyg</groupId>
+                <artifactId>polaris-spring-web</artifactId>
                 <version>${polaris.version}</version>
             </dependency>
             <dependency>
