@@ -4,26 +4,24 @@
 
     <groupId>io.github.flynn-zhangyg</groupId>
     <artifactId>polaris</artifactId>
-    <version>0.0.2</version>
+    <version>0.0.5</version>
     <packaging>pom</packaging>
 
     <modules>
-        <module>polaris-test</module>
-        <module>polaris-spring-web</module>
-        <module>polaris-common</module>
+        <module>polaris-core</module>
+        <module>polaris-spring</module>
     </modules>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.0.6</version>
+        <version>3.1.0</version>
     </parent>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <polaris.version>0.0.2</polaris.version>
         <assertj-core.version>3.24.2</assertj-core.version>
         <mockito-core.version>2.18.3</mockito-core.version>
         <junit-jupiter.version>5.8.1</junit-jupiter.version>
@@ -31,6 +29,11 @@
         <awaitility.version>4.2.0</awaitility.version>
         <wiremock-jre8-standalone.version>2.35.0</wiremock-jre8-standalone.version>
         <lombok.version>1.18.26</lombok.version>
+        <common.lang3.version>3.12.0</common.lang3.version>
+        <polaris-spring.version>0.0.5</polaris-spring.version>
+        <polaris-core.version>0.0.5</polaris-core.version>
+        <apollo.client.version>2.1.0</apollo.client.version>
+        <spring-cloud.version>2022.0.3</spring-cloud.version>
         <mybatis-test.version>3.0.1</mybatis-test.version>
         <mybatis.version>3.0.1</mybatis.version>
     </properties>
@@ -39,23 +42,18 @@
         <dependencies>
             <dependency>
                 <groupId>io.github.flynn-zhangyg</groupId>
-                <artifactId>polaris-test</artifactId>
-                <version>${polaris.version}</version>
+                <artifactId>polaris-spring</artifactId>
+                <version>${polaris-spring.version}</version>
             </dependency>
             <dependency>
                 <groupId>io.github.flynn-zhangyg</groupId>
-                <artifactId>polaris-common</artifactId>
-                <version>${polaris.version}</version>
+                <artifactId>polaris-core</artifactId>
+                <version>${polaris-core.version}</version>
             </dependency>
             <dependency>
-                <groupId>io.github.flynn-zhangyg</groupId>
-                <artifactId>polaris-spring-web</artifactId>
-                <version>${polaris.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.mybatis.spring.boot</groupId>
-                <artifactId>mybatis-spring-boot-starter-test</artifactId>
-                <version>${mybatis.version}</version>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>${common.lang3.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.projectlombok</groupId>
@@ -109,96 +107,9 @@
                 <artifactId>wiremock-jre8-standalone</artifactId>
                 <version>${wiremock-jre8-standalone.version}</version>
             </dependency>
-            <dependency>
-                <groupId>org.mybatis.spring.boot</groupId>
-                <artifactId>mybatis-spring-boot-starter</artifactId>
-                <version>${mybatis.version}</version>
-            </dependency>
         </dependencies>
     </dependencyManagement>
 
-    <build>
-        <finalName>polaris</finalName>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.11.0</version>
-                <configuration>
-                    <source>${java.version}</source>
-                    <target>${java.version}</target>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.1.0</version>
-            </plugin>
-            <plugin>
-                <groupId>org.sonatype.plugins</groupId>
-                <artifactId>nexus-staging-maven-plugin</artifactId>
-                <version>1.6.13</version>
-                <extensions>true</extensions>
-                <configuration>
-                    <serverId>ossrh</serverId>
-                    <nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
-                    <autoReleaseAfterClose>true</autoReleaseAfterClose>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-source-plugin</artifactId>
-                <version>2.2.1</version>
-                <executions>
-                    <execution>
-                        <id>attach-sources</id>
-                        <goals>
-                            <goal>jar-no-fork</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-gpg-plugin</artifactId>
-                <version>3.1.0</version>
-                <executions>
-                    <execution>
-                        <id>sign-artifacts</id>
-                        <phase>verify</phase>
-                        <goals>
-                            <goal>sign</goal>
-                        </goals>
-                        <configuration>
-                            <keyname>0x055204FD</keyname>
-                            <passphraseServerId>0x055204FD</passphraseServerId>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-javadoc-plugin</artifactId>
-                <version>2.9.1</version>
-                <configuration>
-                    <show>private</show>
-                    <nohelp>true</nohelp>
-                    <charset>UTF-8</charset>
-                    <encoding>UTF-8</encoding>
-                    <docencoding>UTF-8</docencoding>
-                    <additionalparam>-Xdoclint:none</additionalparam>
-                </configuration>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>jar</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
 
     <url>https://github.com/Flynn-zhangyg</url>
     <licenses>

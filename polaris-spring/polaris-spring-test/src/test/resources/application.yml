@@ -1,0 +1,16 @@
+spring:
+  sql:
+    init:
+      mode: always
+      schemaLocations:
+        - classpath:sql/schema.sql
+      data-locations:
+        - classpath:sql/data.sql
+
+polaris:
+  data:
+    mongo:
+      crawl:
+        uri: mongodb://crwaluser:crwal_xK5Nhb3MYCR38H@mongofunc1.test2pay.com:8635,mongofunc2.test2pay.com:8635/crawl
+      collect:
+        uri: mongodb://collectuser:collect_zY8gGQH7pgkBsu@mongofunc1.test2pay.com:8635,mongofunc2.test2pay.com:8635/collect
