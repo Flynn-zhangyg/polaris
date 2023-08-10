@@ -5,8 +5,11 @@
 
   <groupId>io.github.flynn-zhangyg</groupId>
   <artifactId>polaris</artifactId>
-  <version>0.0.5</version>
+  <version>0.0.6</version>
   <packaging>pom</packaging>
+
+  <name>polaris</name>
+  <description>scaffold for java development</description>
 
   <modules>
     <module>polaris-core</module>
@@ -25,8 +28,8 @@
     <wiremock-jre8-standalone.version>2.35.0</wiremock-jre8-standalone.version>
     <lombok.version>1.18.26</lombok.version>
     <common.lang3.version>3.12.0</common.lang3.version>
-    <polaris-spring.version>0.0.5</polaris-spring.version>
-    <polaris-core.version>0.0.5</polaris-core.version>
+    <polaris-spring.version>0.0.6</polaris-spring.version>
+    <polaris-core.version>0.0.6</polaris-core.version>
     <mybatis-test.version>3.0.1</mybatis-test.version>
     <mybatis.version>3.0.1</mybatis.version>
   </properties>

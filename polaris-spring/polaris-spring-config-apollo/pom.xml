@@ -5,7 +5,7 @@
   <parent>
     <groupId>io.github.flynn-zhangyg</groupId>
     <artifactId>polaris-spring</artifactId>
-    <version>0.0.5</version>
+    <version>0.0.6</version>
   </parent>
 
   <artifactId>polaris-spring-config-apollo</artifactId>

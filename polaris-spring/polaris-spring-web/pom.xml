@@ -5,7 +5,7 @@
   <parent>
     <groupId>io.github.flynn-zhangyg</groupId>
     <artifactId>polaris-spring</artifactId>
-    <version>0.0.5</version>
+    <version>0.0.6</version>
   </parent>
 
   <artifactId>polaris-spring-web</artifactId>
@@ -23,10 +23,6 @@
       <artifactId>polaris-spring-common</artifactId>
     </dependency>
     <dependency>
-      <groupId>io.github.flynn-zhangyg</groupId>
-      <artifactId>polaris-spring-logging</artifactId>
-    </dependency>
-    <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-web</artifactId>
       <exclusions>
@@ -35,6 +31,19 @@
           <artifactId>spring-boot-starter-logging</artifactId>
         </exclusion>
       </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-log4j2</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-spring-boot</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.lmax</groupId>
+      <artifactId>disruptor</artifactId>
+      <version>3.4.2</version>
     </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>

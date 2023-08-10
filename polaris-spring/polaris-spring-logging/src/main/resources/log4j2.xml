@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration status="WARN" monitorInterval="30">
     <Properties>
-        <Property name="LOG_PATTERN">
-            %d{yyyy-MM-dd HH:mm:ss.SSS}{GMT+4} %5p ${hostName} --- [%15.15t] %-40.40c{1.} : %m%n%ex
+        <Property name="polaris.logging.pattern">
+            %d{yyyy-MM-dd HH:mm:ss.SSS}{GMT+4} %5p [%traceId] ${hostName} --- [%t] %c{1.} : %m%n
         </Property>
-        <property name="applicationName">${env:application.name}</property>
+        <property name="polaris.application.name">${bundle:application:spring.application.name}</property>
+        <property name="polaris.logging.basedir">${sys:polaris.logging.basedir:-./logs}</property>
     </Properties>
     <Appenders>
         <Console name="ConsoleAppender" target="SYSTEM_OUT" follow="true">
-            <PatternLayout pattern="${LOG_PATTERN}"/>
+            <PatternLayout pattern="${polaris.logging.pattern}"/>
         </Console>
-        <RollingFile name="FileAppender" fileName="logs/${applicationName}/app.log"
-                     filePattern="logs/app-%d{yyyy-MM-dd-HH}-%i.log">
+        <RollingFile name="FileAppender" fileName="${polaris.logging.basedir}/${polaris.application.name}/app.log"
+                     filePattern="${polaris.logging.basedir}/${polaris.application.name}/$${date:yyyy-MM}/app-%d{yyyy-MM-dd-HH}-%i.log.zip">
             <PatternLayout>
-                <Pattern>${LOG_PATTERN}</Pattern>
+                <Pattern>${polaris.logging.pattern}</Pattern>
             </PatternLayout>
             <Policies>
                 <TimeBasedTriggeringPolicy interval="1"/>

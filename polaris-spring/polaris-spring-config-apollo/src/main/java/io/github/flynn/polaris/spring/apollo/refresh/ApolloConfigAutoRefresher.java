@@ -32,7 +32,7 @@ public class ApolloConfigAutoRefresher implements ApplicationContextAware {
   @Autowired
   private RefreshScope refreshScope;
 
-  @ApolloConfigChangeListener
+  @ApolloConfigChangeListener("${polaris.apollo.auto-refresh.interested.namespaces:application}")
   public void refreshConfig(ConfigChangeEvent event) {
     refreshConfigurationProperties(event);
     refreshLogLevel(event);
