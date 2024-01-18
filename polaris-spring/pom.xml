@@ -19,6 +19,7 @@
     <module>polaris-spring-data</module>
     <module>polaris-spring-config-apollo</module>
     <module>polaris-spring-logging</module>
+    <module>polaris-spring-kafka</module>
   </modules>
 
   <artifactId>polaris-spring</artifactId>
