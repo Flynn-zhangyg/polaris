@@ -4,13 +4,14 @@ import io.github.flynn.polaris.common.models.ErrorCode;
 
 public class AppException extends RuntimeException{
 
+  private static final String SEPARATOR = "|";
   private final ErrorCode errorCode;
   private final String errorMsg;
 
   public AppException(ErrorCode errorCode, String errorMsg) {
     super();
     this.errorCode = errorCode;
-    this.errorMsg = errorMsg;
+    this.errorMsg = errorCode.getDesc() + SEPARATOR + errorMsg;
   }
 
   public AppException(ErrorCode errorCode) {
