@@ -17,12 +17,16 @@ public class IpAwareUniqueIdGenerator implements UniqueIdGenerator {
   }
 
   public long nextId() {
-    return System.currentTimeMillis() << 22
+    return (System.currentTimeMillis() << 22 & 0x7FFFFFFFFFFFFFFFL)
         | (this.ipAddressBits << 6)
         | (long) (this.counter.getAndIncrement() & 0x3F);
   }
 
   public String nextId(String prefix) {
     return prefix + this.nextId();
+  }
+
+  public static void main(String[] args) throws Exception{
+    System.out.println(new IpAwareUniqueIdGenerator().nextId());
   }
 }
